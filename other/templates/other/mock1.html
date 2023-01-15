@@ -1,6 +1,4 @@
-{% extends 'menu.html' %}
 
-{% block content %}
 <title>Home</title>
 <!-- <div class="container-fluid mt-4">
     <div class="card">
@@ -20,6 +18,35 @@
 <link href="/static/style.css" rel="stylesheet">
 
 <style>
+  .navbar-top {
+    color: #ffffff !important;
+    font-size: 1.2em;
+    font-weight: 500;
+    /* box-shadow: 0 0 10px rgba(0 0 0 / 40%); */
+    background: linear-gradient(to right, #0091e5 0px, #00b7e5 100%) repeat scroll 0 0 !important;
+}
+
+.navbar .megamenu{ padding: 1rem; }
+  /* ============ desktop view ============ */
+  @media all and (min-width: 992px) {
+
+    .navbar .has-megamenu{position:static!important;}
+    .navbar .megamenu{left:0; right:0; width:100%; margin-top:0;  }
+
+  }
+  /* ============ desktop view .end// ============ */
+
+
+  /* ============ mobile view ============ */
+  @media(max-width: 991px){
+    .navbar.fixed-top .navbar-collapse, .navbar.sticky-top .navbar-collapse{
+      overflow-y: auto;
+        max-height: 90vh;
+        margin-top:10px;
+    }
+  }
+  /* ============ mobile view .end// ============ */
+
   .hovereffect span.videohover::before {
     content: url(/static/upload/videohover.png);
   }
@@ -71,6 +98,157 @@
 </style>
 
 <main>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar-top navbar sticky-top navbar-dark bg-dark navbar-expand-lg shadow">
+    <div class="container-fluid">
+      <a class="navbar-brand fs-3" href="{% url 'landing:index' %}">Viral<b style="color: #ff2d0d;">World</b>.media</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-white" aria-current="page" href="{% url 'landing:index' %}">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">About Us</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'blog' %}">Features</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">In-Depth</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Video</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Contact Us</a>
+          </li>
+
+          <!-- <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'blog' %}">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'bikes:bike_list' %}">Bikes</a>
+          </li> -->
+
+          <!-- MEGAMENU START -->
+          <!-- <li class="nav-item dropdown has-megamenu">
+            <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown"> News  </a>
+            <div class="dropdown-menu megamenu" role="menu">
+              <div class="row g-3">
+                  <div class="col-lg-3 col-6">
+                    <div class="col-megamenu">
+                      <h6 class="title">Business</h6>
+                      <div class="blog-box">
+                        <div class="post-media">
+                            <a href="#" title="">
+                                <img src="/static/images/upload/tech_menu_01.jpg" alt="" class="img-fluid">
+                                <div class="hovereffect">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="blog-meta">
+                            <a href="#" title="">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-6">
+                    <div class="col-megamenu">
+                      <h6 class="title">Technology</h6>
+                      <div class="blog-box">
+                        <div class="post-media">
+                            <a href="#" title="">
+                                <img src="/static/images/upload/tech_menu_01.jpg" alt="" class="img-fluid">
+                                <div class="hovereffect">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="blog-meta">
+                            <a href="#" title="">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-6">
+                    <div class="col-megamenu">
+                      <h6 class="title">Features</h6>
+                      <div class="blog-box">
+                        <div class="post-media">
+                            <a href="#" title="">
+                                <img src="/static/images/upload/tech_menu_01.jpg" alt="" class="img-fluid">
+                                <div class="hovereffect">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="blog-meta">
+                            <a href="#" title="">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-6">
+                    <div class="col-megamenu">
+                      <h6 class="title">Tranding</h6>
+                      <div class="blog-box">
+                        <div class="post-media">
+                            <a href="#" title="">
+                                <img src="/static/images/upload/tech_menu_01.jpg" alt="" class="img-fluid">
+                                <div class="hovereffect">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="blog-meta">
+                            <a href="#" title="">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+
+            </div>
+          </li> -->
+          <!-- MEGAMENU END -->
+
+
+        </ul>
+        <!-- SOCIAL MEDIA ICONS -->
+        <div class="d-flex justify-content align-middle">
+          <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-twitter mt-1"></i></a>
+          <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-facebook-f mt-1"></i></a>
+          <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-linkedin-in mt-1"></i></a>
+          <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-instagram mt-1"></i></a>
+          <!-- <a class="btn btn-outline-light text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-youtube mt-1"></i></a> -->
+        </div>
+        <!-- SOCIAL MEDIA ICONS END -->
+
+        <!-- Search -->
+        <!-- <form class="d-flex navbar-nav me-auto mb-2 mb-lg-0" role="search">
+          <input class="form-control me-2" type="search" placeholder="Keyword" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">
+            <svg width="15px" height="15px">
+              <path d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "></path>
+            </svg>
+          </button>
+        </form> -->
+      </div>
+    </div>
+  </nav>
+
+
   <div class="container">
 
     <!-- TOP BANNER -->
