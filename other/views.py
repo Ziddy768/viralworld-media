@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 def simple_view(request):
-    return render(request, 'templates/simple_view.html')
+    return render(request, '/other/templates/simple_view.html')
 
 def mock_view(request):
-    return render(request, 'templates/mock1.html')
+    return render(request, '/other/templates/mock1.html')
