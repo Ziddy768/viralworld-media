@@ -1,0 +1,179 @@
+{% extends 'menu.html' %}
+{% block content %}
+<title>Login</title>
+
+
+
+<!-- Customized Bootstrap Stylesheet -->
+<!-- <link href="/static/style.css" rel="stylesheet"> -->
+
+<!-- <link rel="stylesheet" href="/static/main.css"> -->
+<!-- <link rel="stylesheet" href="../static/bootstrap-5.2.3/css/bootstrap.min.css"> -->
+
+
+<!-- Font Awesome -->
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet"> -->
+
+<!-- <style>
+  .hovereffect span.videohover::before {
+    content: url(/static/upload/videohover.png);
+  }
+
+  .post-media:hover .menucat {
+    display: none;
+  }
+
+  .post-media img {
+      width: 100%;
+  }
+
+  .post-media img,
+  .masonry-box img {
+      -webkit-transition: all .3s ease-in-out;
+      -moz-transition: all .3s ease-in-out;
+      -ms-transition: all .3s ease-in-out;
+      -o-transition: all .3s ease-in-out;
+      transition: all .3s ease-in-out;
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      -o-transform: scale(1);
+      transform: scale(1);
+  }
+
+  .post-media:hover img,
+  .masonry-box:hover img {
+      -webkit-transform: scale(1.1);
+      -moz-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      -o-transform: scale(1.1);
+      transform: scale(1.1);
+  }
+
+  .post-media {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .post-media:hover .hovereffect span::before,
+  .post-media:hover .hovereffect {
+      visibility: visible;
+      zoom: 1;
+      filter: alpha(opacity=100);
+      opacity: 1;
+  }
+
+</style> -->
+
+
+
+<main>
+    <div class="container py-4">
+      <header class="pb-3 mb-4 border-bottom">
+        <span class="fs-4">Login...</span>
+      </header>
+
+      <!-- WARNING PANEL -->
+      <div class="card mb-3 border-info bg-info bg-opacity-10">
+          <div class="card-body text-center">
+            <p class="col-md-4 fs-2">
+
+                {% if user.is_authenticated %}
+                  <p class="fs-5">You have successfully logged in.</p>
+                  <p class="fs-4">Welcome {{user.get_username | title}}</p>
+                  <a href="{% url 'logout' %}?next={{request.path}}"><button class="btn btn-outline-success btn-md" type="button">Logout</button></a>
+                  <!-- <a href="{% url 'profile' %}?next={{request.path}}"><button class="btn btn-outline-primary btn-md" type="button">My Profile</button></a> -->
+                {% else %}
+                  <div class="fs-4">You have successfully logged out.</div>
+                  <div class="fs-5">Please <a href="{% url 'login' %}?next={{request.path}}">Login</a> or <a href="{% url 'signup' %}">Sign Up</a>.</div>
+                  <!-- <a href="{% url 'login' %}?next={{request.path}}"><button class="btn btn-outline-success btn-md mt-3" type="button">Login</button></a>
+                  <a href="{% url 'signup' %}"><button class="btn btn-outline-primary btn-md mt-3" type="button">Sign Up</button></a> -->
+                {% endif %}
+
+            </p>
+          </div>
+      </div>
+
+      <!-- LOGIN RED PANEL -->
+      <div class="container py-3 d-flex justify-content-center">
+
+        <div class="card border-danger mb-3 bg-danger bg-opacity-10 shadow" style="width: 45rem;">
+            <!-- <div class="card-header fs-2">Your searched result for: </div> -->
+            <div class="card-body text-secondary">
+
+                <div class="card-body text-center">
+
+                    <!-- CHECK FOR ERRORS -->
+                {% if form.errors %}
+                    <p class="fs-4">Your username or password was incorrect. Please try again.</p>
+
+                {% endif %}
+
+                <!-- USER LOGGED IN BUT NO ACCESS -->
+                {% if next %}
+                {% if user.is_authenticated %}
+                    <p class="fs-4">You dont have permission for this page.</p>
+                {% else %}
+                    <p class="fs-4">Please login to browse this page.</p>
+                {% endif %}
+
+                {% endif %}
+
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <span class="fs-5">{{form.username.label_tag}}</span>
+                    <p class="form-control-lg">{{form.username}}</p>
+                    <span class="fs-5">{{form.password.label_tag}}</span>
+                    <p class="form-control-lg">{{form.password}}</p>
+
+                    <button type="submit" class="btn btn-success" value="Login">Login</button>
+                    <!-- <input type="submit" value="Login"> -->
+                    <input type="hidden" name="next" value="{{next}}">
+
+                </form>
+                <div class="card-text fs-5">Or you may Sign Up.</div>
+                <a href="{% url 'signup' %}"><button class="btn btn-outline-primary btn-md mt-3" type="button">Sign Up</button></a>
+
+                </div>
+            </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="p-2 mb-4 bg-light border rounded-3">
+        <div class="container-fluid py-3">
+
+        </div>
+      </div>
+
+      <div class="row align-items-md-stretch">
+
+        <div class="col-md-6">
+          <div class="h-100 p-5 bg-light border rounded-3">
+            <p>Left hand card</p>
+
+            <a href="#"><button class="btn btn-outline-secondary" type="button">Book Listing</button></a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="h-100 p-5 bg-light border rounded-3">
+            <!-- <h2>Add borders</h2> -->
+            <p class="col-md-8 fs-4">Total books: </p>
+            <p class="col-md-8 fs-4">Available books: </p>
+
+            <button class="btn btn-outline-secondary" type="button">Example button</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+</main>
+
+
+<script src="/static/bootstrap-5.2.3/js/bootstrap.bundle.min.js"></script>
+
+
+{% endblock %}
